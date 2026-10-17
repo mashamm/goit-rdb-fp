@@ -131,6 +131,7 @@ SELECT
     CURRENT_DATE                                                    AS today,
     EXTRACT(YEAR FROM AGE(CURRENT_DATE, MAKE_DATE(n.year, 1, 1)))::INT AS years_diff
 FROM infectious_cases_normalized n
+ORDER BY n.id
 LIMIT 10;
 
 
@@ -157,6 +158,7 @@ SELECT
     CURRENT_DATE            AS today,
     years_since(n.year)     AS years_diff
 FROM infectious_cases_normalized n
+ORDER BY n.id
 LIMIT 10;
 
 -- 5.2. Середня кількість захворювань за період (річне значення / дільник)
@@ -183,4 +185,5 @@ SELECT
 FROM infectious_cases_normalized n
 JOIN entities e ON e.id = n.entity_id
 WHERE n.number_rabies IS NOT NULL
+ORDER BY n.id
 LIMIT 10;
